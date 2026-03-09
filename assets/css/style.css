@@ -77,23 +77,6 @@ body {
   transition: height 0.1s linear;
 }
 
-.rail-crosshair {
-  position: absolute;
-  left: 0;
-  font-family: var(--font-mono);
-  font-size: 14px; /* Smaller */
-  color: var(--text-current);
-  opacity: 1;
-  line-height: 1;
-  font-weight: 300;
-}
-
-.rail-crosshair.top {
-  top: 40px;
-}
-.rail-crosshair.bottom {
-  bottom: 40px;
-}
 
 .rail-markers {
   position: absolute;
@@ -506,63 +489,9 @@ body[style*="--bg-current: rgb(25"] .contact-panel {
 
 /* Sections */
 section {
-  padding: 200px 0; /* Consistent deep padding */
+  padding: 120px 0;
   border-top: 1px solid var(--border-current);
   position: relative;
-  overflow: hidden;
-}
-
-/* Section Scaffolding */
-.section-header-scaffold {
-  position: absolute;
-  top: 40px;
-  left: 60px;
-  right: 60px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  pointer-events: none;
-  z-index: 5;
-}
-
-.section-label {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  opacity: 0.4;
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.section-label::before {
-  content: "";
-  width: 30px;
-  height: 1px;
-  background: var(--text-current);
-  display: block;
-}
-
-.section-meta {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  opacity: 0.3;
-}
-
-.section-bg-decal {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 40vw;
-  font-weight: 900;
-  color: var(--text-current);
-  opacity: 0.02;
-  user-select: none;
-  pointer-events: none;
-  z-index: 0;
-  line-height: 1;
 }
 
 /* Capability Card Styles */
@@ -786,30 +715,6 @@ footer {
   margin-top: 15px;
 }
 
-.corner-plus {
-  position: absolute;
-  font-family: var(--font-mono);
-  font-size: 1rem;
-  opacity: 0.4;
-  color: var(--text-current);
-}
-
-.corner-plus.tl {
-  top: 20px;
-  left: 20px;
-}
-.corner-plus.tr {
-  top: 20px;
-  right: 20px;
-}
-.corner-plus.bl {
-  bottom: 20px;
-  left: 20px;
-}
-.corner-plus.br {
-  bottom: 20px;
-  right: 20px;
-}
 
 /* Back to Top Button */
 .back-to-top {
