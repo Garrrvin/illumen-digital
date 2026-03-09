@@ -357,7 +357,7 @@ body:not([style*="--bg-current: rgb(24"]):not([style*="--bg-current: rgb(25"])
 
 .drawer-close:hover {
   transform: rotate(90deg);
-  background: #ffef00; /* Distinct yellow pop */
+  background: #00f2ff; /* Swapped yellow for brand blue */
   color: #000;
 }
 
@@ -477,8 +477,8 @@ body:not([style*="--bg-current: rgb(24"]):not([style*="--bg-current: rgb(25"])
 
 .submit-btn-large:hover {
   transform: translateY(-5px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-  background: #ffef00; /* Yellow hover pop matching the close btn */
+  box-shadow: 0 20px 40px rgba(0, 242, 255, 0.4);
+  background: #00f2ff; /* Swapped yellow for brand blue */
   color: #000;
 }
 
