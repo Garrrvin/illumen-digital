@@ -477,7 +477,6 @@ body:not([style*="--bg-current: rgb(24"]):not([style*="--bg-current: rgb(25"])
 
 .submit-btn-large:hover {
   transform: translateY(-5px);
-  box-shadow: 0 20px 40px rgba(0, 242, 255, 0.4);
   background: #00f2ff; /* Swapped yellow for brand blue */
   color: #000;
 }
