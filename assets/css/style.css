@@ -330,7 +330,12 @@ body:not([style*="--bg-current: rgb(24"]):not([style*="--bg-current: rgb(25"])
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   overflow-y: auto;
   box-shadow: -20px 0 50px rgba(0, 0, 0, 0.5);
-  color: #ffffff; /* Force light text */
+  /* Lock to Dark Theme */
+  --bg-current: #0a0a0a !important;
+  --text-current: #ffffff !important;
+  --border-current: rgba(255, 255, 255, 0.1) !important;
+  
+  color: #ffffff !important; /* Force light text inheritance */
 }
 
 .contact-drawer.active {
@@ -426,9 +431,9 @@ body:not([style*="--bg-current: rgb(24"]):not([style*="--bg-current: rgb(25"])
 }
 
 .inquiry-option input[type="radio"]:checked + label {
-  background: #ffffff;
+  background: #ffffff !important;
   color: #000000 !important;
-  border-color: #ffffff;
+  border-color: #ffffff !important;
 }
 
 .form-row {
