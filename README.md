@@ -1,6 +1,9 @@
 # Agency Website Template
 
-**Live Site: [https://illumen-digital.pages.dev](https://illumen-digital.pages.dev)**
+### Deployment Links
+
+- **Cloudflare Pages**: [https://illumen-digital.pages.dev](https://illumen-digital.pages.dev)
+- **GitHub Pages**: [https://garrrvin.github.io/illumen-digital/](https://garrrvin.github.io/illumen-digital/)
 
 This is a premium, dark-themed agency website template built with HTML, CSS, and vanilla JavaScript. It is designed for digital consultancies, creative studios, and B2B service providers.
 
