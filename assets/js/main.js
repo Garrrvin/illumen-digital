@@ -332,7 +332,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (submitBtn) {
                     submitBtn.disabled = true;
                     originalBtnText = submitBtn.textContent;
-                    submitBtn.textContent = "TRANSMITTING...";
+                    submitBtn.textContent = "SENDING...";
                 }
                 
                 if (formStatus) {
@@ -349,7 +349,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     if (response.ok) {
                         if (formStatus) {
-                            formStatus.textContent = "TRANSMISSION SUCCESSFUL.";
+                            formStatus.textContent = "INQUIRY SENT SUCCESSFULLY.";
                             formStatus.classList.add("success");
                         }
                         contactForm.reset();
