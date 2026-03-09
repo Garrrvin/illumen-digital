@@ -269,93 +269,75 @@ backToTop.addEventListener("click", () => {
   });
 });
 
-// Contact Form Logic
+// Contact Form / Drawer Logic
 const contactTrigger = document.getElementById("contactTrigger");
-const contactPanel = document.getElementById("contactPanel");
-const contactClose = document.getElementById("contactClose");
+const contactDrawer = document.getElementById("contactDrawer");
+const drawerClose = document.getElementById("drawerClose");
+const drawerOverlay = document.getElementById("drawerOverlay");
 const contactForm = document.getElementById("contactForm");
 const formStatus = document.getElementById("formStatus");
 
-if (contactTrigger && contactPanel) {
-  const togglePanel = (show) => {
+if (contactTrigger && contactDrawer) {
+  const toggleDrawer = (show) => {
     if (show) {
-      contactPanel.classList.add("active");
+      contactDrawer.classList.add("active");
+      if (drawerOverlay) drawerOverlay.classList.add("active");
+      document.body.style.overflow = "hidden"; // Prevent background scroll
     } else {
-      contactPanel.classList.remove("active");
-      // Clear status when closing
+      contactDrawer.classList.remove("active");
+      if (drawerOverlay) drawerOverlay.classList.remove("active");
+      document.body.style.overflow = ""; // Restore scroll
+      
+      // Clear status when closing after animation
       setTimeout(() => {
         if (formStatus) {
             formStatus.textContent = "";
             formStatus.className = "form-status";
         }
-      }, 400);
+      }, 600);
     }
   };
-
-  // Handle hover and click logic more gracefully
-  let isHovered = false;
-  
-  const handleMouseEnter = () => {
-    isHovered = true;
-    togglePanel(true);
-  };
-
-  const handleMouseLeave = () => {
-    isHovered = false;
-    setTimeout(() => {
-      if (!isHovered) togglePanel(false);
-    }, 500); // 500ms grace period
-  };
-
-  contactTrigger.parentElement.addEventListener("mouseenter", handleMouseEnter);
-  contactTrigger.parentElement.addEventListener("mouseleave", handleMouseLeave);
-  contactPanel.addEventListener("mouseenter", () => { isHovered = true; });
-  contactPanel.addEventListener("mouseleave", handleMouseLeave);
 
   contactTrigger.addEventListener("click", (e) => {
-    e.stopPropagation();
-    const isActive = contactPanel.classList.contains("active");
-    togglePanel(!isActive);
-    isHovered = !isActive;
+    e.preventDefault();
+    toggleDrawer(true);
   });
 
-  contactClose.addEventListener("click", (e) => {
-    e.stopPropagation();
-    isHovered = false;
-    togglePanel(false);
-  });
+  if (drawerClose) {
+      drawerClose.addEventListener("click", () => toggleDrawer(false));
+  }
 
-  // Close panel when clicking outside
-  document.addEventListener("click", (e) => {
-    if (!contactPanel.contains(e.target) && e.target !== contactTrigger) {
-      togglePanel(false);
+  if (drawerOverlay) {
+      drawerOverlay.addEventListener("click", () => toggleDrawer(false));
+  }
+
+  // Handle escape key to close
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && contactDrawer.classList.contains("active")) {
+      toggleDrawer(false);
     }
-  });
-
-  // Prevent closure when clicking inside the panel
-  contactPanel.addEventListener("click", (e) => {
-    e.stopPropagation();
   });
 
   // Form Submission
   if (contactForm) {
     contactForm.addEventListener("submit", async (e) => {
-      // If running on file:// protocol, don't preventDefault
-      // Let it submit normally so it works without AJAX
       if (window.location.protocol === 'file:') {
-        return; // Standard form submission handles it
+        return; 
       }
 
       e.preventDefault();
       const formData = new FormData(contactForm);
-      const submitBtn = contactForm.querySelector(".submit-btn");
+      const submitBtn = contactForm.querySelector(".submit-btn-large");
       
-      submitBtn.disabled = true;
-      const originalBtnText = submitBtn.textContent;
-      submitBtn.textContent = "Transmitting...";
+      let originalBtnText = "TRANSMIT";
+      if (submitBtn) {
+          submitBtn.disabled = true;
+          originalBtnText = submitBtn.textContent;
+          submitBtn.textContent = "TRANSMITTING...";
+      }
       
       if (formStatus) {
-        formStatus.textContent = "Connecting to uplink...";
+        formStatus.textContent = "CONNECTING TO UPLINK...";
         formStatus.className = "form-status";
       }
 
@@ -376,11 +358,9 @@ if (contactTrigger && contactPanel) {
             formStatus.classList.add("success");
           }
           contactForm.reset();
-          setTimeout(() => togglePanel(false), 2000);
+          setTimeout(() => toggleDrawer(false), 2500);
         } else {
-          // Check for specific error messages from Formspree
           const errorMessage = result.errors ? result.errors.map(e => e.message).join(", ") : "TRANSMISSION FAILED.";
-          console.error("Formspree Error:", result);
           throw new Error(errorMessage);
         }
       } catch (error) {
@@ -389,16 +369,18 @@ if (contactTrigger && contactPanel) {
           formStatus.textContent = error.message || "TRANSMISSION FAILED.";
           formStatus.classList.add("error");
           
-          // Fallback advice if on file://
           if (window.location.protocol === 'file:') {
             formStatus.innerHTML = "FAILED: LOCAL FILES (file://) <br>BLOCK AJAX. USE A SERVER.";
           }
         }
       } finally {
-        submitBtn.disabled = false;
-        submitBtn.textContent = originalBtnText;
+        if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalBtnText;
+        }
       }
     });
   }
 }
+
 

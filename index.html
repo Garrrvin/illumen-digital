@@ -53,24 +53,6 @@
         </ul>
         <div class="nav-contact-wrapper">
           <button class="nav-cta" id="contactTrigger">Contact</button>
-          <div class="contact-panel" id="contactPanel">
-            <div class="contact-panel-header">
-              <span class="text-mono">Initialize Connection</span>
-              <button class="contact-close" id="contactClose">&times;</button>
-            </div>
-            <form action="https://formspree.io/f/xqeyejoo" method="POST" id="contactForm">
-              <div class="form-group">
-                <label for="email" class="text-mono">Email / Address</label>
-                <input type="email" id="email" name="email" placeholder="YOUR@EMAIL.COM" required />
-              </div>
-              <div class="form-group">
-                <label for="message" class="text-mono">Message / Intent</label>
-                <textarea id="message" name="message" placeholder="HOW CAN WE ASSIST?" required></textarea>
-              </div>
-              <button type="submit" class="submit-btn text-mono">Transmit</button>
-              <div class="form-status" id="formStatus"></div>
-            </form>
-          </div>
         </div>
       </div>
     </header>
@@ -318,5 +300,59 @@
     <!-- Use Lenis for smooth scroll, critical for this vibe -->
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
     <script src="assets/js/main.js"></script>
+
+    <!-- Contact Drawer (Slide-out Panel) -->
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+    <div class="contact-drawer" id="contactDrawer">
+      <button class="drawer-close" id="drawerClose">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+
+      <div class="drawer-header">
+        <h2 class="text-huge">Let's build<br>something.</h2>
+      </div>
+
+      <form action="https://formspree.io/f/xqeyejoo" method="POST" id="contactForm" class="drawer-form">
+        
+        <!-- Section: Inquiry Type -->
+        <div class="form-section">
+          <div class="form-section-title">01 // Select Inquiry</div>
+          <div class="inquiry-grid">
+            <div class="inquiry-option">
+              <input type="radio" id="new_biz" name="inquiry_type" value="New Business" checked>
+              <label for="new_biz">New Project</label>
+            </div>
+            <div class="inquiry-option">
+              <input type="radio" id="partnership" name="inquiry_type" value="Partnership">
+              <label for="partnership">Partnership</label>
+            </div>
+            <div class="inquiry-option">
+              <input type="radio" id="other" name="inquiry_type" value="Other">
+              <label for="other">General Info</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section: Your Objective -->
+        <div class="form-section">
+          <div class="form-section-title">02 // Your Objective</div>
+          <textarea id="message" name="message" placeholder="DESCRIBE YOUR CHALLENGE OR VISION..." required></textarea>
+        </div>
+
+        <!-- Section: About You -->
+        <div class="form-section">
+          <div class="form-section-title">03 // About You</div>
+          <div class="form-row" style="margin-bottom: 20px;">
+            <input type="text" name="first_name" placeholder="FIRST NAME" required style="margin-bottom: 0;">
+            <input type="text" name="last_name" placeholder="LAST NAME" required style="margin-bottom: 0;">
+          </div>
+          <input type="email" id="email" name="email" placeholder="EMAIL ADDRESS" required>
+          <input type="text" name="company" placeholder="COMPANY NAME (OPTIONAL)" style="margin-bottom: 0;">
+        </div>
+
+        <button type="submit" class="submit-btn-large">Send Transmission</button>
+        <div class="form-status" id="formStatus"></div>
+      </form>
+    </div>
   </body>
 </html>
