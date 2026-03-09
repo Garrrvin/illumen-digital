@@ -320,9 +320,9 @@ body:not([style*="--bg-current: rgb(24"]):not([style*="--bg-current: rgb(25"])
   width: 600px;
   max-width: 90vw;
   height: 100%;
-  background: rgba(15, 15, 15, 0.95);
+  background: rgba(10, 10, 10, 0.98); /* Slightly darker for better contrast */
   backdrop-filter: blur(30px);
-  border-left: 1px solid var(--border-current);
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
   padding: 60px;
   padding-top: 100px;
   z-index: 2000;
@@ -330,20 +330,30 @@ body:not([style*="--bg-current: rgb(24"]):not([style*="--bg-current: rgb(25"])
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   overflow-y: auto;
   box-shadow: -20px 0 50px rgba(0, 0, 0, 0.5);
+  color: #ffffff; /* Force light text */
 }
 
 .contact-drawer.active {
   transform: translateX(0);
 }
 
-/* Close Button (Yellow Square vibe) */
+/* Force specific elements to stay light */
+.contact-drawer h2,
+.contact-drawer .form-section-title,
+.contact-drawer label,
+.contact-drawer input,
+.contact-drawer textarea {
+  color: #ffffff !important;
+}
+
+/* Close Button (Force branding) */
 .drawer-close {
   position: absolute;
   top: 30px;
   right: 30px;
   width: 50px;
   height: 50px;
-  background: var(--text-current);
+  background: #ffffff;
   border: none;
   cursor: pointer;
   display: flex;
@@ -351,13 +361,13 @@ body:not([style*="--bg-current: rgb(24"]):not([style*="--bg-current: rgb(25"])
   justify-content: center;
   transition: all 0.3s ease;
   border-radius: 8px;
-  color: var(--bg-current);
+  color: #000000;
   z-index: 2001;
 }
 
 .drawer-close:hover {
   transform: rotate(90deg);
-  background: #00f2ff; /* Swapped yellow for brand blue */
+  background: #00f2ff;
   color: #000;
 }
 
@@ -367,7 +377,6 @@ body:not([style*="--bg-current: rgb(24"]):not([style*="--bg-current: rgb(25"])
   line-height: 1.1;
   margin-bottom: 50px;
   font-weight: 800;
-  color: var(--text-current);
 }
 
 .form-section {
@@ -384,14 +393,13 @@ body:not([style*="--bg-current: rgb(24"]):not([style*="--bg-current: rgb(25"])
   display: flex;
   align-items: center;
   gap: 15px;
-  color: var(--text-current);
 }
 
 .form-section-title::after {
   content: "";
   flex: 1;
   height: 1px;
-  background: var(--border-current);
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .inquiry-grid {
@@ -408,20 +416,19 @@ body:not([style*="--bg-current: rgb(24"]):not([style*="--bg-current: rgb(25"])
 .inquiry-option label {
   display: block;
   padding: 15px 20px;
-  border: 1px solid var(--border-current);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 12px;
   font-size: 0.85rem;
   text-align: center;
   cursor: pointer;
   transition: all 0.3s ease;
-  background: rgba(255,255,255,0.03);
-  color: var(--text-current);
+  background: rgba(255, 255, 255, 0.03);
 }
 
 .inquiry-option input[type="radio"]:checked + label {
-  background: var(--text-current);
-  color: var(--bg-current);
-  border-color: var(--text-current);
+  background: #ffffff;
+  color: #000000 !important;
+  border-color: #ffffff;
 }
 
 .form-row {
@@ -436,22 +443,26 @@ body:not([style*="--bg-current: rgb(24"]):not([style*="--bg-current: rgb(25"])
 .drawer-form input,
 .drawer-form textarea {
   width: 100%;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid var(--border-current);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 12px;
   padding: 20px 25px;
-  color: var(--text-current);
   font-size: 1.05rem;
   margin-bottom: 20px;
   transition: all 0.3s ease;
   font-family: inherit;
 }
 
+.drawer-form input::placeholder,
+.drawer-form textarea::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
 .drawer-form input:focus,
 .drawer-form textarea:focus {
   outline: none;
-  border-color: var(--text-current);
-  background: rgba(255,255,255,0.08);
+  border-color: #00f2ff;
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .drawer-form textarea {
@@ -461,11 +472,11 @@ body:not([style*="--bg-current: rgb(24"]):not([style*="--bg-current: rgb(25"])
 
 .submit-btn-large {
   width: 100%;
-  background: var(--text-current);
-  color: var(--bg-current);
+  background: #ffffff;
+  color: #000000;
   border: none;
   padding: 24px;
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.15em;
@@ -477,9 +488,10 @@ body:not([style*="--bg-current: rgb(24"]):not([style*="--bg-current: rgb(25"])
 
 .submit-btn-large:hover {
   transform: translateY(-5px);
-  background: #00f2ff; /* Swapped yellow for brand blue */
+  background: #00f2ff;
   color: #000;
 }
+
 
 .submit-btn-large:disabled {
   opacity: 0.5;
