@@ -270,117 +270,113 @@ backToTop.addEventListener("click", () => {
 });
 
 // Contact Form / Drawer Logic
-const contactTrigger = document.getElementById("contactTrigger");
-const contactDrawer = document.getElementById("contactDrawer");
-const drawerClose = document.getElementById("drawerClose");
-const drawerOverlay = document.getElementById("drawerOverlay");
-const contactForm = document.getElementById("contactForm");
-const formStatus = document.getElementById("formStatus");
+document.addEventListener("DOMContentLoaded", () => {
+    const contactTrigger = document.getElementById("contactTrigger");
+    const contactDrawer = document.getElementById("contactDrawer");
+    const drawerClose = document.getElementById("drawerClose");
+    const drawerOverlay = document.getElementById("drawerOverlay");
+    const contactForm = document.getElementById("contactForm");
+    const formStatus = document.getElementById("formStatus");
 
-if (contactTrigger && contactDrawer) {
-  const toggleDrawer = (show) => {
-    if (show) {
-      contactDrawer.classList.add("active");
-      if (drawerOverlay) drawerOverlay.classList.add("active");
-      document.body.style.overflow = "hidden"; // Prevent background scroll
-    } else {
-      contactDrawer.classList.remove("active");
-      if (drawerOverlay) drawerOverlay.classList.remove("active");
-      document.body.style.overflow = ""; // Restore scroll
-      
-      // Clear status when closing after animation
-      setTimeout(() => {
-        if (formStatus) {
-            formStatus.textContent = "";
-            formStatus.className = "form-status";
-        }
-      }, 600);
-    }
-  };
+    console.log("Contact logic initializing...", { contactTrigger, contactDrawer });
 
-  contactTrigger.addEventListener("click", (e) => {
-    e.preventDefault();
-    toggleDrawer(true);
-  });
+    if (contactTrigger && contactDrawer) {
+        const toggleDrawer = (show) => {
+            if (show) {
+                contactDrawer.classList.add("active");
+                if (drawerOverlay) drawerOverlay.classList.add("active");
+                document.body.style.overflow = "hidden";
+            } else {
+                contactDrawer.classList.remove("active");
+                if (drawerOverlay) drawerOverlay.classList.remove("active");
+                document.body.style.overflow = "";
+                
+                setTimeout(() => {
+                    if (formStatus) {
+                        formStatus.textContent = "";
+                        formStatus.className = "form-status";
+                    }
+                }, 600);
+            }
+        };
 
-  if (drawerClose) {
-      drawerClose.addEventListener("click", () => toggleDrawer(false));
-  }
-
-  if (drawerOverlay) {
-      drawerOverlay.addEventListener("click", () => toggleDrawer(false));
-  }
-
-  // Handle escape key to close
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && contactDrawer.classList.contains("active")) {
-      toggleDrawer(false);
-    }
-  });
-
-  // Form Submission
-  if (contactForm) {
-    contactForm.addEventListener("submit", async (e) => {
-      if (window.location.protocol === 'file:') {
-        return; 
-      }
-
-      e.preventDefault();
-      const formData = new FormData(contactForm);
-      const submitBtn = contactForm.querySelector(".submit-btn-large");
-      
-      let originalBtnText = "TRANSMIT";
-      if (submitBtn) {
-          submitBtn.disabled = true;
-          originalBtnText = submitBtn.textContent;
-          submitBtn.textContent = "TRANSMITTING...";
-      }
-      
-      if (formStatus) {
-        formStatus.textContent = "CONNECTING TO UPLINK...";
-        formStatus.className = "form-status";
-      }
-
-      try {
-        const response = await fetch(contactForm.action, {
-          method: "POST",
-          body: formData,
-          headers: {
-            'Accept': 'application/json'
-          }
+        contactTrigger.addEventListener("click", (e) => {
+            console.log("Contact button clicked");
+            e.preventDefault();
+            toggleDrawer(true);
         });
 
-        const result = await response.json();
+        if (drawerClose) {
+            drawerClose.addEventListener("click", () => toggleDrawer(false));
+        }
 
-        if (response.ok) {
-          if (formStatus) {
-            formStatus.textContent = "TRANSMISSION SUCCESSFUL.";
-            formStatus.classList.add("success");
-          }
-          contactForm.reset();
-          setTimeout(() => toggleDrawer(false), 2500);
-        } else {
-          const errorMessage = result.errors ? result.errors.map(e => e.message).join(", ") : "TRANSMISSION FAILED.";
-          throw new Error(errorMessage);
+        if (drawerOverlay) {
+            drawerOverlay.addEventListener("click", () => toggleDrawer(false));
         }
-      } catch (error) {
-        console.error("Submission error:", error);
-        if (formStatus) {
-          formStatus.textContent = error.message || "TRANSMISSION FAILED.";
-          formStatus.classList.add("error");
-          
-          if (window.location.protocol === 'file:') {
-            formStatus.innerHTML = "FAILED: LOCAL FILES (file://) <br>BLOCK AJAX. USE A SERVER.";
-          }
+
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape" && contactDrawer.classList.contains("active")) {
+                toggleDrawer(false);
+            }
+        });
+
+        if (contactForm) {
+            contactForm.addEventListener("submit", async (e) => {
+                if (window.location.protocol === 'file:') return;
+
+                e.preventDefault();
+                const formData = new FormData(contactForm);
+                const submitBtn = contactForm.querySelector(".submit-btn-large");
+                
+                let originalBtnText = "TRANSMIT";
+                if (submitBtn) {
+                    submitBtn.disabled = true;
+                    originalBtnText = submitBtn.textContent;
+                    submitBtn.textContent = "TRANSMITTING...";
+                }
+                
+                if (formStatus) {
+                    formStatus.textContent = "CONNECTING TO UPLINK...";
+                    formStatus.className = "form-status";
+                }
+
+                try {
+                    const response = await fetch(contactForm.action, {
+                        method: "POST",
+                        body: formData,
+                        headers: { 'Accept': 'application/json' }
+                    });
+
+                    if (response.ok) {
+                        if (formStatus) {
+                            formStatus.textContent = "TRANSMISSION SUCCESSFUL.";
+                            formStatus.classList.add("success");
+                        }
+                        contactForm.reset();
+                        setTimeout(() => toggleDrawer(false), 2500);
+                    } else {
+                        const result = await response.json();
+                        const errorMessage = result.errors ? result.errors.map(e => e.message).join(", ") : "TRANSMISSION FAILED.";
+                        throw new Error(errorMessage);
+                    }
+                } catch (error) {
+                    console.error("Submission error:", error);
+                    if (formStatus) {
+                        formStatus.textContent = error.message || "TRANSMISSION FAILED.";
+                        formStatus.classList.add("error");
+                    }
+                } finally {
+                    if (submitBtn) {
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = originalBtnText;
+                    }
+                }
+            });
         }
-      } finally {
-        if (submitBtn) {
-            submitBtn.disabled = false;
-            submitBtn.textContent = originalBtnText;
-        }
-      }
-    });
-  }
-}
+    } else {
+        console.error("Critical elements missing from DOM for contact drawer.");
+    }
+});
+
 
 
