@@ -506,9 +506,63 @@ body[style*="--bg-current: rgb(25"] .contact-panel {
 
 /* Sections */
 section {
-  padding: 120px 0;
+  padding: 200px 0; /* Consistent deep padding */
   border-top: 1px solid var(--border-current);
   position: relative;
+  overflow: hidden;
+}
+
+/* Section Scaffolding */
+.section-header-scaffold {
+  position: absolute;
+  top: 40px;
+  left: 60px;
+  right: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  opacity: 0.4;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.section-label::before {
+  content: "";
+  width: 30px;
+  height: 1px;
+  background: var(--text-current);
+  display: block;
+}
+
+.section-meta {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  opacity: 0.3;
+}
+
+.section-bg-decal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 40vw;
+  font-weight: 900;
+  color: var(--text-current);
+  opacity: 0.02;
+  user-select: none;
+  pointer-events: none;
+  z-index: 0;
+  line-height: 1;
 }
 
 /* Capability Card Styles */
