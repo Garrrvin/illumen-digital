@@ -2,5 +2,5 @@
 
 ### Deployment Links
 
-- **Cloudflare Pages**: [https://illumen-digital.pages.dev](https://illumen-digital.pages.dev)
+- **Cloudflare Pages**: [https://illumen-digital.gavinlcoplin.workers.dev/](https://illumen-digital.gavinlcoplin.workers.dev/)
 - **GitHub Pages**: [https://garrrvin.github.io/illumen-digital/](https://garrrvin.github.io/illumen-digital/)
