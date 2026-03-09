@@ -15,6 +15,16 @@ requestAnimationFrame(raf);
 document.querySelectorAll(".nav-item").forEach((link) => {
   link.addEventListener("click", (e) => {
     const targetId = link.getAttribute("href");
+    
+    // Close mobile menu if open
+    const navLinks = document.querySelector(".nav-links");
+    const mobileToggle = document.getElementById("mobileNavToggle");
+    if (navLinks && navLinks.classList.contains("active")) {
+      navLinks.classList.remove("active");
+      if (mobileToggle) mobileToggle.classList.remove("active");
+      document.body.style.overflow = "";
+    }
+
     if (targetId && targetId.startsWith("#")) {
       e.preventDefault();
       const target = document.querySelector(targetId);
@@ -31,6 +41,23 @@ document.querySelectorAll(".nav-item").forEach((link) => {
     }
   });
 });
+
+// Mobile Nav Toggle Logic
+const mobileNavToggle = document.getElementById("mobileNavToggle");
+const navLinks = document.querySelector(".nav-links");
+
+if (mobileNavToggle && navLinks) {
+  mobileNavToggle.addEventListener("click", () => {
+    mobileNavToggle.classList.toggle("active");
+    navLinks.classList.toggle("active");
+    
+    if (navLinks.classList.contains("active")) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+  });
+}
 
 // Intersection Observer for fade-in elements
 const observerOptions = {
@@ -286,10 +313,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 contactDrawer.classList.add("active");
                 if (drawerOverlay) drawerOverlay.classList.add("active");
                 document.body.style.overflow = "hidden";
+                document.body.classList.add("drawer-active");
             } else {
                 contactDrawer.classList.remove("active");
                 if (drawerOverlay) drawerOverlay.classList.remove("active");
                 document.body.style.overflow = "";
+                document.body.classList.remove("drawer-active");
                 
                 setTimeout(() => {
                     if (formStatus) {

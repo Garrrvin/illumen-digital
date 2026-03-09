@@ -53,6 +53,11 @@
         </ul>
         <div class="nav-contact-wrapper">
           <button class="nav-cta" id="contactTrigger">Contact</button>
+          <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
         </div>
       </div>
     </header>
@@ -64,7 +69,7 @@
           <h1 class="text-huge">
             Your New<br>Web Intelligence<br>Partner.
           </h1>
-          <div class="cascade" style="margin-top: 60px; max-width: 800px; margin-left: auto; margin-right: auto;">
+          <div class="cascade hero-intro-cascade">
             <p class="text-mono" style="margin-bottom: 25px;">01 — The Vision</p>
             <p style="font-size: 1.2rem; color: var(--text-current); line-height: 1.6; opacity: 0.9;">
               We engineer more than just websites. We build the infrastructure for long-term growth, from bespoke creation to data intelligence, serving as your dedicated partner in scaling digital platforms.
@@ -75,18 +80,18 @@
 
       <section id="services">
         <div class="container cascade from-left fade-in">
-          <div style="margin-bottom: 120px; display: flex; align-items: flex-end; justify-content: space-between;">
+          <div class="section-header">
             <div>
-              <span class="text-mono" style="display: block; margin-bottom: 20px;">02 — Capabilities</span>
+              <span class="text-mono section-label">02 — Capabilities</span>
               <h2 class="text-huge">Engineered<br>Ecosystems.</h2>
             </div>
-            <div style="max-width: 500px; text-align: right;">
-              <p class="text-mono" style="opacity: 0.5; font-size: 0.85rem; margin-bottom: 10px;">Technical Architecture</p>
-              <p style="font-size: 1.15rem; color: var(--text-current); line-height: 1.5;">A specialized suite of high-performance services designed for long-term scalability and data intelligence.</p>
+            <div class="header-meta">
+              <p class="text-mono meta-label">Technical Architecture</p>
+              <p class="meta-desc">A specialized suite of high-performance services designed for long-term scalability and data intelligence.</p>
             </div>
           </div>
           
-          <div class="grid" style="grid-template-columns: 1fr; gap: 80px; margin: 0 auto; width: 100%;">
+          <div class="grid section-grid">
             
             <!-- Capability Card 1 -->
             <div class="cap-card fade-in">
@@ -94,10 +99,10 @@
                 <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2H2v10h10V2zM22 12h-10v10h10V12zM12 12H2v10h10V12zM22 2h-10v10h10V2z"/></svg>
               </div>
               <div class="cap-body">
-                <h2 class="text-large" style="margin: 0;">Enterprise Web Services</h2>
-                <p class="cap-desc" style="margin-top: 10px;">Bespoke backend architectures and scalable API solutions engineered for high-availability enterprise environments.</p>
+                <h2 class="text-large">Enterprise Web Services</h2>
+                <p class="cap-desc">Bespoke backend architectures and scalable API solutions engineered for high-availability enterprise environments.</p>
               </div>
-              <ul class="text-mono" style="opacity: 0.5; font-size: 0.7rem; line-height: 2;">
+              <ul class="text-mono card-list">
                 <li>+ Node.js Architecture</li>
                 <li>+ Scalable Microservices</li>
                 <li>+ API Design & Integration</li>
@@ -110,10 +115,10 @@
                 <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>
               </div>
               <div class="cap-body">
-                <h2 class="text-large" style="margin: 0;">Web Analytics</h2>
-                <p class="cap-desc" style="margin-top: 10px;">Custom tracking frameworks and real-time data visualization to monitor and optimize every user interaction.</p>
+                <h2 class="text-large">Web Analytics</h2>
+                <p class="cap-desc">Custom tracking frameworks and real-time data visualization to monitor and optimize every user interaction.</p>
               </div>
-              <ul class="text-mono" style="opacity: 0.5; font-size: 0.7rem; line-height: 2;">
+              <ul class="text-mono card-list">
                 <li>+ GA4 Implementation</li>
                 <li>+ Behavioral Tracking</li>
                 <li>+ Real-time Visuals</li>
@@ -126,10 +131,10 @@
                 <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
               </div>
               <div class="cap-body">
-                <h2 class="text-large" style="margin: 0;">Data Driven Insights</h2>
-                <p class="cap-desc" style="margin-top: 10px;">Transforming raw data into strategic growth through predictive modeling and advanced statistical analysis.</p>
+                <h2 class="text-large">Data Driven Insights</h2>
+                <p class="cap-desc">Transforming raw data into strategic growth through predictive modeling and advanced statistical analysis.</p>
               </div>
-              <ul class="text-mono" style="opacity: 0.5; font-size: 0.85rem; line-height: 2;">
+              <ul class="text-mono card-list">
                 <li>+ Predictive Modeling</li>
                 <li>+ Strategic Forecasting</li>
                 <li>+ Intelligence Reporting</li>
@@ -143,56 +148,56 @@
 
       <section id="about">
         <div class="container cascade from-bottom fade-in">
-          <div style="margin-bottom: 120px; display: flex; align-items: flex-end; justify-content: space-between;">
+          <div class="section-header">
             <div>
-              <span class="text-mono" style="display: block; margin-bottom: 20px;">03 — The Strategy</span>
+              <span class="text-mono section-label">03 — The Strategy</span>
               <h2 class="text-huge">Roadmap to<br>Scalability.</h2>
             </div>
-            <div style="max-width: 500px; text-align: right;">
-              <p class="text-mono" style="opacity: 0.5; font-size: 0.85rem; margin-bottom: 10px;">Lifecycle Management</p>
-              <p style="font-size: 1.15rem; color: var(--text-current); line-height: 1.5;">A continuous cycle of development, maintenance, and high-level data interpretation.</p>
+            <div class="header-meta">
+              <p class="text-mono meta-label">Lifecycle Management</p>
+              <p class="meta-desc">A continuous cycle of development, maintenance, and high-level data interpretation.</p>
             </div>
           </div>
 
-          <div class="strategy-timeline grid" style="grid-template-columns: 1fr; gap: 80px; width: 100%;">
+          <div class="strategy-timeline grid section-grid">
             <!-- Step 1 -->
             <div class="timeline-step fade-in">
               <span class="text-huge">01</span>
               <div>
-                <h3 class="text-large" style="margin-bottom: 25px; color: var(--text-current);">Website Creation</h3>
-                <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-current); opacity: 0.8;">Bespoke digital architecture built with performance-first code. We create the foundation of your digital presence.</p>
+                <h3 class="text-large step-title">Website Creation</h3>
+                <p class="step-desc">Bespoke digital architecture built with performance-first code. We create the foundation of your digital presence.</p>
               </div>
-              <span class="text-mono" style="text-align: right; opacity: 0.4; font-size: 1.1rem;">Development</span>
+              <span class="text-mono step-label">Development</span>
             </div>
 
             <!-- Step 2 -->
             <div class="timeline-step fade-in" style="transition-delay: 0.1s;">
               <span class="text-huge">02</span>
               <div>
-                <h3 class="text-large" style="margin-bottom: 25px; color: var(--text-current);">Monthly Maintenance</h3>
-                <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-current); opacity: 0.8;">Seamless technical refinement and security updates. Ensuring your platform remains optimized and resilient against market shifts.</p>
+                <h3 class="text-large step-title">Monthly Maintenance</h3>
+                <p class="step-desc">Seamless technical refinement and security updates. Ensuring your platform remains optimized and resilient against market shifts.</p>
               </div>
-              <span class="text-mono" style="text-align: right; opacity: 0.4; font-size: 1.1rem;">Sustainability</span>
+              <span class="text-mono step-label">Sustainability</span>
             </div>
 
             <!-- Step 3 -->
             <div class="timeline-step fade-in" style="transition-delay: 0.2s;">
               <span class="text-huge">03</span>
               <div>
-                <h3 class="text-large" style="margin-bottom: 25px; color: var(--text-current);">Analytics & Dashboards</h3>
-                <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-current); opacity: 0.8;">Transforming behavior into data. We deploy custom visualization dashboards that provide a real-time pulse of your business metrics.</p>
+                <h3 class="text-large step-title">Analytics & Dashboards</h3>
+                <p class="step-desc">Transforming behavior into data. We deploy custom visualization dashboards that provide a real-time pulse of your business metrics.</p>
               </div>
-              <span class="text-mono" style="text-align: right; opacity: 0.4; font-size: 1.1rem;">Insight</span>
+              <span class="text-mono step-label">Insight</span>
             </div>
 
             <!-- Step 4 -->
             <div class="timeline-step fade-in" style="transition-delay: 0.3s;">
               <span class="text-huge">04</span>
               <div>
-                <h3 class="text-large" style="margin-bottom: 25px; color: var(--text-current);">Intelligence Partner</h3>
-                <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-current); opacity: 0.8;">Strategic partnership defined by technical expertise. We provide our professional opinion and data-driven guidance to navigate your roadmap.</p>
+                <h3 class="text-large step-title">Intelligence Partner</h3>
+                <p class="step-desc">Strategic partnership defined by technical expertise. We provide our professional opinion and data-driven guidance to navigate your roadmap.</p>
               </div>
-              <span class="text-mono" style="text-align: right; opacity: 0.4; font-size: 1.1rem;">Partnership</span>
+              <span class="text-mono step-label">Partnership</span>
             </div>
           </div>
         </div>
@@ -283,7 +288,7 @@
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
             </a>
           </div>
-          <span class="text-mono" style="opacity: 0.4; font-size: 0.75rem;">© 2026 ILLUMEN DIGITAL. ALL RIGHTS RESERVED.</span>
+          <span class="text-mono footer-copyright">© 2026 ILLUMEN DIGITAL. ALL RIGHTS RESERVED.</span>
         </div>
       </div>
     </footer>
@@ -303,7 +308,7 @@
 
     <!-- Contact Drawer (Slide-out Panel) -->
     <div class="drawer-overlay" id="drawerOverlay"></div>
-    <div class="contact-drawer" id="contactDrawer">
+    <div class="contact-drawer" id="contactDrawer" data-lenis-prevent>
       <button class="drawer-close" id="drawerClose">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
       </button>
@@ -342,12 +347,12 @@
         <!-- Section: About You -->
         <div class="form-section">
           <div class="form-section-title">03 // About You</div>
-          <div class="form-row" style="margin-bottom: 20px;">
-            <input type="text" name="first_name" placeholder="FIRST NAME" required style="margin-bottom: 0;">
-            <input type="text" name="last_name" placeholder="LAST NAME" required style="margin-bottom: 0;">
+          <div class="form-row form-row-gap">
+            <input type="text" name="first_name" placeholder="FIRST NAME" required>
+            <input type="text" name="last_name" placeholder="LAST NAME" required>
           </div>
           <input type="email" id="email" name="email" placeholder="EMAIL ADDRESS" required>
-          <input type="text" name="company" placeholder="COMPANY NAME (OPTIONAL)" style="margin-bottom: 0;">
+          <input type="text" name="company" placeholder="COMPANY NAME (OPTIONAL)">
         </div>
 
         <button type="submit" class="submit-btn-large">Send Inquiry</button>
