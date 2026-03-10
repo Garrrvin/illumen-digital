@@ -176,7 +176,7 @@ header {
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 100;
+  z-index: 1000; /* Standard high z-index for fixed header */
   background-color: var(--bg-current);
   color: var(--text-current);
   border-bottom: 1px solid var(--border-current);
@@ -196,7 +196,7 @@ header.fade-in {
 
 header.fade-in.visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: none; /* Crucial: allows fixed children to use viewport instead of header as container */
 }
 
 .header-container {
@@ -298,8 +298,9 @@ body:not([style*="--bg-current: rgb(24"]):not([style*="--bg-current: rgb(25"])
   border: none;
   cursor: pointer;
   padding: 0;
-  z-index: 2100;
+  z-index: 10;
   margin-left: 20px;
+  flex-shrink: 0; /* Prevent shrinking */
 }
 
 .mobile-nav-toggle span {
@@ -308,11 +309,11 @@ body:not([style*="--bg-current: rgb(24"]):not([style*="--bg-current: rgb(25"])
   background-color: var(--text-current);
   border-radius: 10px;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  transform-origin: left;
+  transform-origin: center; /* Centered for better X animation */
 }
 
 .mobile-nav-toggle.active span:nth-child(1) {
-  transform: rotate(45deg);
+  transform: translateY(9px) rotate(45deg);
 }
 
 .mobile-nav-toggle.active span:nth-child(2) {
@@ -320,13 +321,16 @@ body:not([style*="--bg-current: rgb(24"]):not([style*="--bg-current: rgb(25"])
 }
 
 .mobile-nav-toggle.active span:nth-child(3) {
-  transform: rotate(-45deg);
+  transform: translateY(-9px) rotate(-45deg);
 }
 
 /* Contact Panel Styling */
 .nav-contact-wrapper {
-  justify-self: end;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
   position: relative;
+  z-index: 2100; /* Ensure this is higher than .nav-links (2000) on mobile */
 }
 
 /* Contact Drawer Styling (Side Panel) */
@@ -339,7 +343,7 @@ body:not([style*="--bg-current: rgb(24"]):not([style*="--bg-current: rgb(25"])
   background: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  z-index: 1999;
+  z-index: 2500; /* Above header (1000) and nav links (2000) */
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.5s ease;
@@ -363,11 +367,11 @@ body:not([style*="--bg-current: rgb(24"]):not([style*="--bg-current: rgb(25"])
   border-left: 1px solid rgba(255, 255, 255, 0.1);
   padding: 50px;
   padding-top: 80px;
-  z-index: 2000;
+  z-index: 3000; /* Topmost drawer layer */
   transform: translateX(100%);
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   overflow-y: auto;
-  box-shadow: -20px 0 50px rgba(0, 0, 0, 0.5);
+  box-shadow: none;
   /* Lock to Dark Theme */
   --bg-current: #0a0a0a !important;
   --text-current: #ffffff !important;
@@ -559,6 +563,8 @@ body:not([style*="--bg-current: rgb(24"]):not([style*="--bg-current: rgb(25"])
   font-weight: 700;
   font-size: 1.45rem; /* Noticeably more prominent */
   letter-spacing: -0.03em;
+  position: relative;
+  z-index: 2200; /* Stay above menu drawer */
 }
 
 /* Hero Section */
@@ -943,7 +949,7 @@ footer {
   opacity: 0;
   visibility: hidden;
   transform: translateY(20px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  box-shadow: none;
   animation: pulse-grey 3s infinite;
 }
 
@@ -969,7 +975,6 @@ footer {
   transform: translateY(-8px) scale(1.1);
   background-color: #555555;
   color: #ffffff;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
 .back-to-top:active {
@@ -1114,17 +1119,35 @@ footer {
     top: 0;
     right: 0;
     bottom: 0;
-    width: 300px;
-    background: var(--bg-current);
+    width: 300px; /* Slightly wider to cover centered buttons */
+    background: #050505 !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 40px;
-    z-index: 2000;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 100px 40px; /* Balance: not too high, not too low */
+    gap: 20px;
+    z-index: 2500;
     transform: translateX(100%);
     transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     border-left: 1px solid var(--border-current);
     margin: 0;
+    box-shadow: none;
+    height: 100vh; /* Force full height */
+  }
+
+  .nav-links .nav-item {
+    font-size: 0.95rem; /* Smaller font for mobile */
+    height: auto;
+  }
+
+  .nav-links .nav-item::after {
+    display: none; /* Simplify mobile links (remove hover effect) */
+  }
+
+  .nav-links .nav-item span {
+    transform: none !important;
   }
 
   .nav-links.active {
@@ -1155,22 +1178,38 @@ footer {
   }
   .header-container {
     padding: 0 20px;
-    display: flex;
-    justify-content: space-between;
+    display: grid !important;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
+    width: 100%;
   }
-  
+
+  .nav-contact-wrapper {
+    display: contents; /* Allow children to be direct grid items */
+  }
+
   .logo {
     font-size: 1.1rem;
+    position: relative;
+    z-index: 2000; /* Below nav-links (2500) */
   }
 
   .nav-cta {
+    grid-column: 2;
+    justify-self: center;
+    margin: 0;
     font-size: 0.8rem;
     padding: 8px 16px;
+    z-index: 2000; /* Below nav-links (2500) */
+    position: relative;
   }
 
   .mobile-nav-toggle {
-    margin-left: 15px;
+    grid-column: 3;
+    justify-self: end;
+    margin: 0;
+    z-index: 3000; /* Above nav-links (2500) */
+    position: relative;
   }
   
   section {
