@@ -673,22 +673,7 @@ section {
   margin-bottom: 20px;
 }
 
-.header-meta {
-  max-width: 500px;
-  text-align: right;
-}
-
-.meta-label {
-  opacity: 0.5;
-  font-size: 0.85rem;
-  margin-bottom: 10px;
-}
-
-.meta-desc {
-  font-size: 1.15rem;
-  color: var(--text-current);
-  line-height: 1.5;
-}
+/* .header-meta, .meta-label, .meta-desc removed as per request */
 
 .section-grid {
   grid-template-columns: 1fr;
@@ -697,11 +682,7 @@ section {
   width: 100%;
 }
 
-.card-list {
-  opacity: 0.5;
-  font-size: 0.7rem;
-  line-height: 2;
-}
+/* .card-list removed as per request */
 
 .step-title {
   margin-bottom: 25px;
@@ -715,11 +696,7 @@ section {
   opacity: 0.8;
 }
 
-.step-label {
-  text-align: right;
-  opacity: 0.4;
-  font-size: 1.1rem;
-}
+/* .step-label removed as per request */
 
 .footer-copyright {
   opacity: 0.4;
@@ -739,8 +716,8 @@ section {
   background: rgba(128, 128, 128, 0.05);
   backdrop-filter: blur(10px);
   display: grid;
-  grid-template-columns: auto 1fr auto;
-  gap: 100px; /* Much bigger gap */
+  grid-template-columns: auto 1fr;
+  gap: 80px; /* Adjusted gap */
   align-items: center;
   width: 100%;
 }
@@ -804,8 +781,8 @@ body[style*="--bg-current: rgb(25"] .cap-card:hover {
   background: rgba(128, 128, 128, 0.05);
   backdrop-filter: blur(15px);
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
-  gap: 100px; /* Matched gap with cap-card */
+  grid-template-columns: auto 1fr;
+  gap: 80px; /* Adjusted gap */
   align-items: center;
   transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
@@ -1218,10 +1195,7 @@ footer {
     margin-bottom: 60px;
   }
 
-  .header-meta {
-    text-align: left;
-    max-width: 100%;
-  }
+  /* .header-meta logic removed */
 
   .footer-grid {
     grid-template-columns: repeat(3, 1fr);
@@ -1287,10 +1261,7 @@ footer {
     transform: translateY(-10px);
   }
 
-  .step-label {
-    text-align: left;
-    margin-top: 10px;
-  }
+  /* .step-label logic removed */
 
   .contact-drawer {
     width: 100%;
