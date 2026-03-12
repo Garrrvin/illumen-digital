@@ -110,18 +110,43 @@ const handleScroll = () => {
   const totalHeight = docHeight - winHeight;
   const scrollRatio = totalHeight > 0 ? scrollTop / totalHeight : 0;
 
-  // Theme tracks the specific 10% -> 25% window
+  // 1. Theme 1: Hero -> Capabilities (Black to White)
   const themeProgress = Math.max(0, Math.min(1, (scrollRatio - 0.1) / (0.25 - 0.1)));
-
-  // Dynamic Color Transition
-  const rVal = Math.round(5 + themeProgress * 235);
-  const gVal = Math.round(5 + themeProgress * 243);
-  const bVal = Math.round(5 + themeProgress * 250);
   
-  const textCurve = themeProgress < 0.5 ? Math.pow(themeProgress * 2, 2) * 0.5 : 1 - Math.pow((1 - themeProgress) * 2, 2) * 0.5;
+  // 2. Theme 2: Capabilities -> Strategy (White to Deep Midnight)
+  const aboutSection = document.getElementById("about");
+  let strategyThemeProgress = 0;
+  if (aboutSection) {
+    const rect = aboutSection.getBoundingClientRect();
+    const startColorFlip = window.innerHeight * 0.8;
+    const endColorFlip = window.innerHeight * 0.2;
+    strategyThemeProgress = Math.max(0, Math.min(1, (startColorFlip - rect.top) / (startColorFlip - endColorFlip)));
+  }
+
+  // Dynamic Color Transition Logic
+  // Stage 1: 5,5,5 -> 240,248,255
+  // Stage 2: 240,248,255 -> 10,15,28 (Deep Midnight Navy)
+  let rVal = Math.round(5 + themeProgress * 235);
+  let gVal = Math.round(5 + themeProgress * 243);
+  let bVal = Math.round(5 + themeProgress * 250);
+
+  if (strategyThemeProgress > 0) {
+    rVal = Math.round(rVal + (10 - rVal) * strategyThemeProgress);
+    gVal = Math.round(gVal + (15 - gVal) * strategyThemeProgress);
+    bVal = Math.round(bVal + (28 - bVal) * strategyThemeProgress);
+  }
+  
+  // Text Color Logic: Flip based on brightness
+  // Text goes Dark on light bg, then White again on dark bg
+  let textCurve = themeProgress < 0.5 ? Math.pow(themeProgress * 2, 2) * 0.5 : 1 - Math.pow((1 - themeProgress) * 2, 2) * 0.5;
+  // If we are moving into Strategy, fade text back to white
+  if (strategyThemeProgress > 0) {
+    textCurve = textCurve * (1 - strategyThemeProgress);
+  }
+
   const textVal = Math.round(255 - textCurve * 250);
   const textB = Math.round(255 - textCurve * 239);
-  const borderAlpha = 0.1 + themeProgress * 0.1;
+  const borderAlpha = 0.1 + (themeProgress * 0.1) - (strategyThemeProgress * 0.05);
   const overlayAlpha = 0.4 * (1 - themeProgress);
 
   document.documentElement.style.setProperty("--bg-current", `rgb(${rVal}, ${gVal}, ${bVal})`);
@@ -202,7 +227,6 @@ const handleScroll = () => {
 
   // Side Rail Visibility
   const sideRail = document.querySelector(".side-rail");
-  const aboutSection = document.getElementById("about");
   if (sideRail && aboutSection) {
     const rect = aboutSection.getBoundingClientRect();
     if (rect.bottom < window.innerHeight * 0.2) {
@@ -334,6 +358,14 @@ document.addEventListener("DOMContentLoaded", () => {
             e.preventDefault();
             toggleDrawer(true);
         });
+
+        const footerContactTrigger = document.getElementById("footerContactTrigger");
+        if (footerContactTrigger) {
+            footerContactTrigger.addEventListener("click", (e) => {
+                e.preventDefault();
+                toggleDrawer(true);
+            });
+        }
 
         if (drawerClose) {
             drawerClose.addEventListener("click", () => toggleDrawer(false));
